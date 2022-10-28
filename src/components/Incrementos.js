@@ -30,17 +30,17 @@ export default class Incrementos extends Component {
     }
 
     //METODO PARA CARGAR LOS DOCTORES CON SU INCREMENTO EN UNA TABLA
-    loadDoctores = (oficio) => {
-        var request = "api/Doctores/DoctoresEspecialidad/" + oficio;
-        var url = Global.url + request;
+    // loadDoctores = (oficio) => {
+    //     var request = "api/Doctores/DoctoresEspecialidad/" + oficio;
+    //     var url = Global.url + request;
 
-        axios.get(url).then(response => {
-            this.setState({
-                doctores: response.data,
-                statusDocs: true
-            });
-        });
-    }
+    //     axios.get(url).then(response => {
+    //         this.setState({
+    //             doctores: response.data,
+    //             statusDocs: true
+    //         });
+    //     });
+    // }
 
     //METODO PARA HACER EL PUT EN LA API
     incrementoSalario = (e) => {
@@ -53,8 +53,6 @@ export default class Incrementos extends Component {
                 statusPut: true
             })
         });
-
-        this.loadDoctores(this.cajaEspacilidadRef.current.value);
     }
 
     componentDidMount = () => {
@@ -88,35 +86,8 @@ export default class Incrementos extends Component {
                 </form>
 
                 {
-
-
-
-                    this.state.statusDocs == true && (
-
-                        <table style={{ margin: "50px auto" }} border={1}>
-                            <thead>
-                                <tr>
-                                    <td>Apellido</td>
-                                    <td>Especialidad</td>
-                                    <td>Salario</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.doctores.map((doctor, index) => {
-                                        return (
-                                            // <tr key={doctor.idDoctor}>
-                                            //     <td>{doctor.apellido}</td>
-                                            //     <td>{doctor.especialidad}</td>
-                                            //     <td>{doctor.salario}</td>
-                                            // </tr>
-
-                                            <Doctores key={index} idDoctor={doctor.idDoctor} apellido={doctor.apellido} especialidad={doctor.especialidad} salario={doctor.salario}/>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
+                    this.state.statusPut == true && (
+                        <Doctores especialidad={this.cajaEspacilidadRef.current.value}/>
                     )
                 }
             </div>
