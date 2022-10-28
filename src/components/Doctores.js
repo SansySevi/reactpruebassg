@@ -21,8 +21,16 @@ export default class Doctores extends Component {
         });
     }
 
+    //METODO PARA EJECUTAR FUNCIO AL INICIAR EL COMPONENTE
     componentDidMount = () => {
         this.loadDoctores();
+    }
+
+    //METODO PARA ACTUALIZAR EL COMPONENTE CUANDO VARIE LA ESPECIALIDAD
+    componentDidUpdate = (oldProps) => {
+        if(oldProps.especialidad != this.props.especialidad) {
+            this.loadDoctores();
+        }
     }
 
     render() {
@@ -41,6 +49,7 @@ export default class Doctores extends Component {
                             </thead>
                             <tbody>
                                 {
+                                    //RECORREMOS ARRAY DOCTORES
                                     this.state.doctores.map((doctor, index) => {
                                         return (
                                             <tr key={doctor.idDoctor}>

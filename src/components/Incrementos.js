@@ -11,9 +11,7 @@ export default class Incrementos extends Component {
     state = {
         especialidades: [],
         statusEsp: false,
-        statusPut: false,
-        doctores: [],
-        statusDocs: false
+        statusPut: false
     }
 
     //METODO PARA DIBUJAR LOS OPTIONS DEL SELECT
@@ -29,19 +27,6 @@ export default class Incrementos extends Component {
         });
     }
 
-    //METODO PARA CARGAR LOS DOCTORES CON SU INCREMENTO EN UNA TABLA
-    // loadDoctores = (oficio) => {
-    //     var request = "api/Doctores/DoctoresEspecialidad/" + oficio;
-    //     var url = Global.url + request;
-
-    //     axios.get(url).then(response => {
-    //         this.setState({
-    //             doctores: response.data,
-    //             statusDocs: true
-    //         });
-    //     });
-    // }
-
     //METODO PARA HACER EL PUT EN LA API
     incrementoSalario = (e) => {
         e.preventDefault();
@@ -55,12 +40,10 @@ export default class Incrementos extends Component {
         });
     }
 
+    //METODO PARA EJECUTAR FUNCIO AL INICIAR EL COMPONENTE
     componentDidMount = () => {
         this.loadEspecialidades();
     }
-
-
-
 
     render() {
         return (
@@ -87,6 +70,7 @@ export default class Incrementos extends Component {
 
                 {
                     this.state.statusPut == true && (
+                        //LLAMAMOS AL COMPONENTE DOCTORES PARA DIBUJAR LA TABLA
                         <Doctores especialidad={this.cajaEspacilidadRef.current.value}/>
                     )
                 }
