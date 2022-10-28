@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Global from '../Global';
+import Doctores from './Doctores';
 
 export default class Incrementos extends Component {
 
@@ -92,7 +93,7 @@ export default class Incrementos extends Component {
 
                     this.state.statusDocs == true && (
 
-                        <table style={{margin:"50px auto"}} border={1}>
+                        <table style={{ margin: "50px auto" }} border={1}>
                             <thead>
                                 <tr>
                                     <td>Apellido</td>
@@ -102,13 +103,15 @@ export default class Incrementos extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.doctores.map((doctor,index)=> {
-                                        return(
-                                            <tr key={doctor.idDoctor}>
-                                                <td>{doctor.apellido}</td>
-                                                <td>{doctor.especialidad}</td>
-                                                <td>{doctor.salario}</td>
-                                            </tr>
+                                    this.state.doctores.map((doctor, index) => {
+                                        return (
+                                            // <tr key={doctor.idDoctor}>
+                                            //     <td>{doctor.apellido}</td>
+                                            //     <td>{doctor.especialidad}</td>
+                                            //     <td>{doctor.salario}</td>
+                                            // </tr>
+
+                                            <Doctores key={index} idDoctor={doctor.idDoctor} apellido={doctor.apellido} especialidad={doctor.especialidad} salario={doctor.salario}/>
                                         )
                                     })
                                 }
